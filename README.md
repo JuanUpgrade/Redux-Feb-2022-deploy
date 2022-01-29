@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Resumen de Redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Redux es un contenedor de estado global para nuestra aplicación de React.
 
-## Available Scripts
+¿Qué quiere decir esto?
 
-In the project directory, you can run:
+Si bien, dentro de un componente podemos usar useState para hacer nuestra web dinámica y que se actualice con cualquier cambio en variables de estado,
+redux es una especie de useState gigante para toda la aplicación. La ventaja es que no depende de ningún componente para crear el estado.
 
-### `npm start`
+¿Entonces como se actualiza?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tenemos varios jugadores y elementos disponibles
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Actions y Reducers -> Estos elementos van de la mano. Cuando ejecutamos una acción, se dispara un reducer.
 
-### `npm test`
+¿Cómo nombro a mis Actions y Reducers?
+Es sencillo, suele ser similar a los modelos de MongoDB en Node. Es decir, si en nuestro servidor tenemos modelos de Users, Posts, Post, y Comments, tendremos que crear un archivo de Actions y Reducers para cada uno de estos modelos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Actions -> Mediante funciones, crearemos acciones. Estas acciones se 'dispararán' cuando se produzca algún cambio en nuestra aplicación.
+Las dispararemos nosotros mismos a través de funciones que hemos tenido que crear. Por ejemplo: Pedir usuarios al servidor, pedir Posts al servidor ó informar si el servidor nos devuelve un error. A través de las Redux Dev Tools del navegador podremos ver de manera cronológica todo el historial de acciones que se van disparando.
 
-### `npm run build`
+Reducer -> Es el encargado de cambiar nuestro estado global (el useState global). En función de la acción que reciba, programaremos para que ocurra una cosa u u otra. Por ejemplo en caso de recibir bien los datos del servidor, o en caso de recibir un error, el reducer será el responsable de guardar la correspondiente información recibida del server.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Provider -> Como con el contexto de React (Context.Provider), necesitamos tener un único Provider en nuestro proyecto. Lo situaremos en primer nivel, en el archivo index.js que renderiza dentro a nuestro componente <App>.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Store -> Solo puede haber 1 en toda la aplicación. Se encarga de conectar los 'estados' divididos en partes (reducers) en un único punto.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Bien, ¿Y ahora como lo conectamos todo?
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Todo empieza en el archivo de Actions correspondiente. Ahí crearemos funciones que harán algo específico. Esas funciones las vamos a exportar y las vamos a ejecutar desde el componente deseado. Por ejemplo, PostsActions exporta una función getPosts(). Esa función pide los posts al servidor y cuando los recibe, comprobará en nuestro Reducer qué tiene que hacer con los datos recibidos. El reducer guardará la información correspondiente en nuestra Store de Redux.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+De esa manera, 'dispararemos' acciones.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Hasta aquí todo OK, pero ¿Y para leer los datos del estado de Redux?
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Ahora es donde entran en juego dos nuevas funciones de las que no hemos hablado hasta ahora. 'connect' que importaremos de Redux y 'mapStateToProps';
 
-## Learn More
+connect -> Esta función la usaremos para conectar nuestro componente al estado global de Redux.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+mapStateToProps -> Es una función callback que le pasamos a la función 'connect' de redux. En esta función vamos a definir las variables que queremos obtener del store de Redux.
