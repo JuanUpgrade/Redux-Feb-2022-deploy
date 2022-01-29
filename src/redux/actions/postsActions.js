@@ -28,9 +28,9 @@ export const getPosts = () => {
             const data = await res.json();
 
             dispatch(actionGetPostsOk(data));
-            dispatch(actionGetPostsError());
         } catch (error) {
-
+            console.log(error);
+            dispatch(actionGetPostsError());
         }
     };
 };

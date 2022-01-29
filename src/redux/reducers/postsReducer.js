@@ -21,6 +21,9 @@ const postsReducer = (state = INITIAL_STATE, action) => {
         case actions.GET_POSTS_OK: {
             return { posts: action.payload, loading: false, error: false };
         }
+        case actions.GET_POSTS_ERROR: {
+            return { ...state, error: true, loading: false}
+        }
         default:
             return state;
     }
