@@ -15,7 +15,7 @@ const PostsPage = (props) => {
         if (loading) return <div>Cargando...</div>
         if(error) return <div>Ha ocurrido un error</div>
 
-        return posts.map(post => <Articulo key={post.id} post={post} />);
+        return posts.map(post => <Articulo key={post.id} post={post} summary={true} />);
     };
 
     return (

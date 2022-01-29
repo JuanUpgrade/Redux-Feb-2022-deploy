@@ -12,10 +12,10 @@ const commentsReducer = (state = INITIAL_STATE, action) => {
             return {...state, loading: true}
         }
         case actions.GET_COMMENTS_OK: {
-            return {comments: action.payload, loading: false, error: false}
+            return {...state, comments: action.payload, loading: false, error: false}
         }
         case actions.GET_COMMENTS_ERROR: {
-            return  {...state, error: true, loading: false}
+            return {...state, error: true, loading: false}
         }
         default:
             return state;

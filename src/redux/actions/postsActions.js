@@ -8,7 +8,7 @@ const actionGetPosts = () => ({
 
 const actionGetPostsOk = (posts) => ({
     type: GET_POSTS_OK,
-    payload: posts,
+    payload: Array.isArray(posts) ? posts : [],
 });
 
 const actionGetPostsError = () => ({
