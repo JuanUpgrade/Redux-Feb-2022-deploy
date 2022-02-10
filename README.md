@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6621cadd-95b1-4d34-9dd1-c4cd575023d2/deploy-status)](https://app.netlify.com/sites/react-posts-redux/deploys)
+
 # Resumen de Redux
 
 Redux es un contenedor de estado global para nuestra aplicación de React.
