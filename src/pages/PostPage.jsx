@@ -12,7 +12,7 @@ const PostPage = (props) => {
     useEffect(() => {
         dispatch(getComments(id));
         dispatch(getPost(id));
-    }, []);
+    }, [dispatch, id]);
 
     const showPost = () => {
         if (loading) return <div>Cargando artículo...</div>
