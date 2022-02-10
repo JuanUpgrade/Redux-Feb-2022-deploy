@@ -24,7 +24,6 @@ export const getComments = (id) => {
             const comments = await res.json();
             dispatch(actionGetCommentsOk(comments));
         } catch (error) {
-            console.log(error);
             dispatch(actionGetCommentsError());
         }
     }

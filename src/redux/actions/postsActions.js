@@ -29,7 +29,6 @@ export const getPosts = () => {
 
             dispatch(actionGetPostsOk(data));
         } catch (error) {
-            console.log(error);
             dispatch(actionGetPostsError());
         }
     };

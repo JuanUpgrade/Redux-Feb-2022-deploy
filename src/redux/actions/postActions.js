@@ -24,7 +24,6 @@ export const getPost = (id) => {
             const data = await res.json();
             dispatch(actionGetPostOk(data));
         } catch(error) {
-            console.log(error);
             dispatch(actionGetPostError());
         }
     };

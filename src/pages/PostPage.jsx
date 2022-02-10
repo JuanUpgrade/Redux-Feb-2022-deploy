@@ -6,7 +6,6 @@ import { getPost } from "../redux/actions/postActions";
 import { Articulo, Comment } from '../components';
 
 const PostPage = (props) => {
-    console.log(props);
     const {dispatch, post, loading, error, comments} = props;
     const {id} = useParams();
 

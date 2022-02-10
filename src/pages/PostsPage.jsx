@@ -4,10 +4,8 @@ import { Articulo } from "../components";
 import {getPosts} from '../redux/actions/postsActions';
 
 const PostsPage = (props) => {
-    console.log(props);
     const {dispatch, posts, loading, error} = props;
     useEffect(() => {
-        console.log(props);
         dispatch(getPosts());
     }, [dispatch])
 
