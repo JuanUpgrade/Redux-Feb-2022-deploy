@@ -26,7 +26,7 @@ const PostPage = (props) => {
         if (loading) return <div>Cargando comentarios...</div>
         if (error) return <div>Ha ocurrido un error</div>
 
-        return comments.map(comment => <Comment comment={comment} />)
+        return comments.map(comment => <Comment key={JSON.stringify(comment)} comment={comment} />)
     };
 
     return (
